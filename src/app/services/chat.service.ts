@@ -9,7 +9,7 @@ export class ChatService {
 
   sendMessage(mensaje: String) {
     let payload = {
-      de: "Rodrigo",
+      de: this._wsService.regresarUsuario().nombre,
       cuerpo: mensaje
     };
 
@@ -18,5 +18,11 @@ export class ChatService {
   //aqui recuperamos todos los mensajes que se estan mandando
   getMessages() {
     return this._wsService.listen("mensaje-nuevo");
+  }
+  getMensajePrivado() {
+    return this._wsService.listen("mensaje-privado");
+  }
+  getUsuariosActivos() {
+    return this._wsService.listen("usuarios-activos");
   }
 }
